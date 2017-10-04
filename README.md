@@ -6,6 +6,14 @@
 <br>
 <br>
 
+## Stratum ecosystem
+- [`stratum`](https://github.com/chevalvert/stratum/) : stratum main app
+- [`stratum-wizard`](https://github.com/chevalvert/stratum-wizard) : stratum setup wizard
+- [`stratum-hnode`](https://github.com/Hemisphere-Project/STRATUM) : leds UDP server + client
+- `stratum-viewer` : alternative UDP client
+
+<br>
+
 ## Dependencies
 
 - Processing >= 3.3
