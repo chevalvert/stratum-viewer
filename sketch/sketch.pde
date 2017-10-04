@@ -21,12 +21,11 @@ boolean SHOW_GRID = true;
 PeasyCam cam;
 Stratum stratum;
 
-void settings () {
-  size(800, 600, P3D);
-  // fullScreen(P3D, 2);
-}
-
+void settings () { size(1024, 780, P3D); }
 void setup () {
+  surface.setResizable(true);
+  surface.setTitle("stratum-viewer");
+
   float fov = PI / 3.0;
   float cameraZ = (height) / tan(fov / 2.0);
   perspective(fov, float(width) / float(height), cameraZ / 100.0, cameraZ * 100.0);
@@ -53,12 +52,11 @@ void keyPressed () {
   }
 }
 
-void fpsMeter () { fpsMeter(""); }
-void fpsMeter (String suffix) {
+void fpsMeter () {
   cam.beginHUD();
   fill(255);
   textAlign(LEFT, BOTTOM);
-  text(int(frameRate) + " fps" + "\n" + suffix, 20, height - 20);
+  text(int(frameRate) + " fps", 20, height - 20);
   cam.endHUD();
 }
 
