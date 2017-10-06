@@ -7,30 +7,32 @@ final int
 
   // mm
   PILLAR_LEDS_THICKNESS = 3,
-  PILLAR_PITCH  = 500 / 3,
+  PILLAR_PITCH  = 500,
   PILLAR_WIDTH = 30,
   PILLAR_THICKNESS = 10,
   PILLAR_HEIGHT = 1500,
   PILLAR_OFFY = 200,
   LEDS_PITCH = ((PILLAR_HEIGHT / PILLAR_LEDS_LENGTH) + 2);
 
-boolean SHOW_GRID = true;
+boolean
+  SHOW_GRID = true,
+  SHOW_PILLARS = true;
 
 // -------------------------------------------------------------------------
 
 PeasyCam cam;
 Stratum stratum;
 
-void settings () { size(1024, 780, P3D); }
+void settings () { size(1200, 800, P3D); }
 void setup () {
   surface.setResizable(true);
   surface.setTitle("stratum-viewer");
 
   float fov = PI / 3.0;
-  float cameraZ = (height) / tan(fov / 2.0);
-  perspective(fov, float(width) / float(height), cameraZ / 100.0, cameraZ * 100.0);
+  float cameraZ = (height * 2) / tan(fov / 2.0);
+  perspective(fov, float(width) / float(height), cameraZ / 100.0, cameraZ * 1000.0);
   cam = new PeasyCam(this, cameraZ);
-  stratum = new Stratum(this, loadImage("8x8.png"));
+  stratum = new Stratum(this, loadImage("lyon_trimmed.png"));
   stratum.connect(3737);
 }
 
@@ -41,14 +43,16 @@ void draw () {
   rotateY(radians(22.5));
   translate(stratum.origin.x, stratum.origin.y, stratum.origin.z);
 
-  stratum.draw();
+  stratum.draw(SHOW_PILLARS);
   stratum.drawFloor(SHOW_GRID);
   fpsMeter();
 }
 
 void keyPressed () {
   switch (key) {
+    case 'h' : SHOW_PILLARS = !SHOW_PILLARS; break;
     case 'g' : SHOW_GRID = !SHOW_GRID; break;
+    case 'p' : stratum.printNodesMapping(); break;
   }
 }
 
@@ -59,4 +63,3 @@ void fpsMeter () {
   text(int(frameRate) + " fps", 20, height - 20);
   cam.endHUD();
 }
-

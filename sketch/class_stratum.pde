@@ -61,9 +61,10 @@ public class Stratum {
     for (Node n : this.nodes) n.connect(udp);
   }
 
-  public void draw () {
+  public void draw () { this.draw(true); }
+  public void draw (boolean drawPillar) {
     for (Pillar[] rows : this.pillars) {
-      for (Pillar p : rows) if (p != null) p.draw();
+      for (Pillar p : rows) if (p != null) p.draw(drawPillar);
     }
   }
 
@@ -107,5 +108,22 @@ public class Stratum {
   public Pillar get (int i, int j) {
     if (i >= 0 && i < this.width && j >= 0 && j < this.height) return this.pillars[i][j];
     else return null;
+  }
+
+  public void printNodesMapping () {
+    JSONObject o = new JSONObject();
+    for (Node node : this.nodes) {
+      JSONArray pillars = new JSONArray();
+      for (Pillar p : node.pillars) {
+        IntList pos = new IntList();
+        pos.append(p.i);
+        pos.append(p.j);
+
+        pillars.append(new JSONArray(pos));
+      }
+      o.setJSONArray(node.name, pillars);
+    }
+
+    println(o);
   }
 }

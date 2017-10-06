@@ -34,19 +34,21 @@ public class Pillar {
       led.translate(PILLAR_THICKNESS - PILLAR_LEDS_THICKNESS, 0, y + PILLAR_OFFY);
       this.ledsShape.addChild(led);
     }
-    // this.ledsShape.setStroke(false);
+    this.ledsShape.setStroke(false);
   }
 
   // -------------------------------------------------------------------------
 
-  public void draw () {
+  public void draw () { this.draw(true); }
+  public void draw (boolean drawPillar) {
     pushMatrix();
     translate(i * PILLAR_PITCH, j * PILLAR_PITCH);
-    shape(this.pillarShape);
+    if (drawPillar) shape(this.pillarShape);
 
     for (int i = 0, len = this.ledsShape.getChildCount(); i < len; i++) {
       PShape led = this.ledsShape.getChild(i);
       color c = color(this.leds[i][0], this.leds[i][1], this.leds[i][2]);
+      if (!drawPillar) c = color(red(c), green(c), blue(c), brightness(c));
       led.setFill(c);
     }
 
