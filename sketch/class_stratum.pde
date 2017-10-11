@@ -68,7 +68,7 @@ public class Stratum {
     }
   }
 
-  public void drawFloor (boolean drawAsGrid) {
+  public void drawFloor (boolean drawAsGrid, boolean showLight) {
     pushMatrix();
       pushStyle();
         translate(-PILLAR_PITCH / 2, -PILLAR_PITCH / 2);
@@ -82,24 +82,28 @@ public class Stratum {
           for (int j = 0; j < this.height; j++) line(0, j * PILLAR_PITCH, this.width * PILLAR_PITCH, j * PILLAR_PITCH);
         }
 
-        // noStroke();
-        // fill(30);
-        // pushMatrix();
-        // translate(0, 0, 2);
-        // for (int i = 0; i < this.width; i++) {
-        //   for (int j = 0; j < this.height; j++) {
-        //     Pillar p = this.get(i, j);
-        //     if (p != null) {
-        //       int o = int(p.getLightValue() * 255);
-        //       pushStyle();
-        //         noStroke();
-        //         fill(255, o);
-        //         rect(i * PILLAR_PITCH, j * PILLAR_PITCH, PILLAR_PITCH, PILLAR_PITCH);
-        //       popStyle();
-        //     }
-        //   }
-        // }
-        // popMatrix();
+        if (showLight) {
+          pushStyle();
+          noStroke();
+          fill(30);
+          pushMatrix();
+          translate(0, 0, 2);
+          for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+              Pillar p = this.get(i, j);
+              if (p != null) {
+                int o = int(p.getLightValue() * 255);
+                pushStyle();
+                noStroke();
+                fill(255, o);
+                rect(i * PILLAR_PITCH, j * PILLAR_PITCH, PILLAR_PITCH, PILLAR_PITCH);
+                popStyle();
+              }
+            }
+          }
+          popMatrix();
+          popStyle();
+        }
         rect(0, 0, this.width * PILLAR_PITCH, this.height * PILLAR_PITCH);
       popStyle();
     popMatrix();

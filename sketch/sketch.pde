@@ -16,6 +16,7 @@ final int
 
 boolean
   SHOW_GRID = true,
+  SHOW_GRID_LIGHT = false,
   SHOW_PILLARS = true;
 
 // -------------------------------------------------------------------------
@@ -44,12 +45,13 @@ void draw () {
   translate(stratum.origin.x, stratum.origin.y, stratum.origin.z);
 
   stratum.draw(SHOW_PILLARS);
-  stratum.drawFloor(SHOW_GRID);
+  stratum.drawFloor(SHOW_GRID, SHOW_GRID_LIGHT);
   fpsMeter();
 }
 
 void keyPressed () {
   switch (key) {
+    case 'l' : SHOW_GRID_LIGHT = !SHOW_GRID_LIGHT; break;
     case 'h' : SHOW_PILLARS = !SHOW_PILLARS; break;
     case 'g' : SHOW_GRID = !SHOW_GRID; break;
     case 'p' : stratum.printNodesMapping(); break;

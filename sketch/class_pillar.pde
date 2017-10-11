@@ -55,4 +55,13 @@ public class Pillar {
     shape(this.ledsShape);
     popMatrix();
   }
+
+  public float getLightValue () {
+    float sum = 0;
+    for (int[] l : this.leds) {
+      color c = color(l[0], l[1], l[2]);
+      sum += brightness(c);
+    }
+    return (float) sum / PILLAR_LEDS_LENGTH;
+  }
 }
