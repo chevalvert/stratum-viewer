@@ -8,8 +8,8 @@ public class Stratum {
   Stratum (PApplet parent, PImage map) {
     this.parent = parent;
 
-    this.width = map.width;
-    this.height = map.height;
+    this.width = map.height;
+    this.height = map.width;
     this.pillars = mapToPillars(map);
     this.origin = new PVector(-((this.width) * PILLAR_PITCH / 2),
                               -((this.height) * PILLAR_PITCH / 2),
@@ -18,11 +18,11 @@ public class Stratum {
   }
 
   private Pillar[][] mapToPillars (PImage map) {
-    Pillar[][] pillars = new Pillar[map.width][map.height];
+    Pillar[][] pillars = new Pillar[this.width][this.height];
 
     map.loadPixels();
-    for (int x = 0, w = map.width; x < w; x++) {
-      for (int y = 0, h = map.height; y < h; y++) {
+    for (int x = 0, w = this.width; x < w; x++) {
+      for (int y = 0, h = this.height; y < h; y++) {
         int index = x + y * w;
         if (brightness(map.pixels[index]) < 127) {
           pillars[x][y] = new Pillar(x, y);
