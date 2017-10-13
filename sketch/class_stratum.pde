@@ -85,7 +85,7 @@ public class Stratum {
         if (showLight) {
           pushStyle();
           noStroke();
-          fill(30);
+          noFill();
           pushMatrix();
           translate(0, 0, 2);
           for (int i = 0; i < this.width; i++) {
