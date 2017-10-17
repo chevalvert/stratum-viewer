@@ -31,7 +31,7 @@ void setup () {
   surface.setTitle("stratum-viewer");
 
   float fov = PI / 3.0;
-  float cameraZ = (height * 2) / tan(fov / 2.0);
+  float cameraZ = (height * 4) / tan(fov / 2.0);
   perspective(fov, float(width) / float(height), cameraZ / 100.0, cameraZ * 1000.0);
   cam = new PeasyCam(this, cameraZ);
   stratum = new Stratum(this, loadImage("lyon_trimmed.png"));
@@ -42,7 +42,8 @@ void draw () {
   background(#222222);
   rotateX(radians(90));
   rotateZ(radians(90));
-  rotateY(radians(22.5));
+  rotateZ(radians(2.5));
+  rotateY(radians(10));
   translate(stratum.origin.x, stratum.origin.y, stratum.origin.z);
 
   stratum.draw(SHOW_PILLARS);

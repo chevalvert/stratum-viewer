@@ -11,8 +11,8 @@ public class Stratum {
     this.width = map.height;
     this.height = map.width;
     this.pillars = mapToPillars(map);
-    this.origin = new PVector(-((this.width) * PILLAR_PITCH / 2),
-                              -((this.height) * PILLAR_PITCH / 2),
+    this.origin = new PVector(-((this.width - 1) * PILLAR_PITCH / 2),
+                              -((this.height - 1) * PILLAR_PITCH / 2),
                               -((PILLAR_HEIGHT) / 2));
     this.nodes = bundlePillars(this.pillars, 4);
   }
