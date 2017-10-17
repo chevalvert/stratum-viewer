@@ -15,6 +15,7 @@ final int
   LEDS_PITCH = ((PILLAR_HEIGHT / PILLAR_LEDS_LENGTH) + 2);
 
 boolean
+  RECORD = false,
   SHOW_GRID = true,
   SHOW_GRID_LIGHT = false,
   SHOW_PILLARS = true;
@@ -46,15 +47,30 @@ void draw () {
 
   stratum.draw(SHOW_PILLARS);
   stratum.drawFloor(SHOW_GRID, SHOW_GRID_LIGHT);
+  record();
   fpsMeter();
 }
 
 void keyPressed () {
   switch (key) {
+    case 's' : RECORD = !RECORD; break;
     case 'l' : SHOW_GRID_LIGHT = !SHOW_GRID_LIGHT; break;
     case 'h' : SHOW_PILLARS = !SHOW_PILLARS; break;
     case 'g' : SHOW_GRID = !SHOW_GRID; break;
     case 'p' : stratum.printNodesMapping(); break;
+  }
+}
+
+void record () {
+  if (RECORD) {
+    saveFrame("export/####.tif");
+    cam.beginHUD();
+    pushStyle();
+      fill(255, 0, 0);
+      noStroke();
+      ellipse(width - 50, height - 50, 25, 25);
+    popStyle();
+    cam.endHUD();
   }
 }
 
