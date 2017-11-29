@@ -92,10 +92,9 @@ public class Stratum {
             for (int j = 0; j < this.height; j++) {
               Pillar p = this.get(i, j);
               if (p != null) {
-                int o = int(p.getLightValue() * 255);
                 pushStyle();
                 noStroke();
-                fill(255, o);
+                fill(p.getAverageColor());
                 rect(i * PILLAR_PITCH, j * PILLAR_PITCH, PILLAR_PITCH, PILLAR_PITCH);
                 popStyle();
               }

@@ -64,4 +64,16 @@ public class Pillar {
     }
     return (float) sum / PILLAR_LEDS_LENGTH;
   }
+
+  public color getAverageColor () {
+    float sum_r = 0;
+    float sum_g = 0;
+    float sum_b = 0;
+    for (int[] l : this.leds) {
+      sum_r += l[0];
+      sum_g += l[1];
+      sum_b += l[2];
+    }
+    return color(sum_r / PILLAR_LEDS_LENGTH, sum_g / PILLAR_LEDS_LENGTH, sum_b / PILLAR_LEDS_LENGTH);
+  }
 }
