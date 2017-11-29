@@ -3,7 +3,13 @@
 *Preview [Stratum](https://github.com/chevalvert/processing-stratum-simulator/) in 3D by hijacking [`hnode`](https://github.com/Hemisphere-Project/STRATUM)'s UDP.*
 
 <br>
-<br>
+
+<kbd>g</kbd> : show/hide the floor grid.  
+<kbd>h</kbd> : show/hide the pillars.  
+<kbd>l</kbd> : show/hide the light on the floor.   
+<kbd>p</kbd> : print the nodes mapping to the console.  
+<kbd>s</kbd> : start/stop frame recording.  
+
 <br>
 
 ## Stratum ecosystem
