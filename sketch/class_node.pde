@@ -1,8 +1,7 @@
 import java.nio.charset.StandardCharsets;
 
 public class Node {
-  public String name;
-  public JSONObject info;
+  public String name, info;
   public ArrayList<Pillar> pillars;
 
   private UDP udp_tx, udp_rx;
@@ -12,12 +11,7 @@ public class Node {
     this.pillars = new ArrayList<Pillar>();
 
     int PORT_RX = 6000 + id;
-    this.info = new JSONObject();
-
-    this.info.setString("name", name);
-    this.info.setInt("processing", 100);
-    this.info.setInt("dataRate", 101);
-    this.info.setInt("port", PORT_RX);
+    this.info = name + "//" + PORT_RX;
 
     this.udp_rx = new UDP(parent, PORT_RX);
     this.udp_rx.listen(true);
@@ -56,6 +50,6 @@ public class Node {
 
   private void sendInfo () {
     if (this.udp_tx != null)
-      this.udp_tx.send(this.info.toString().getBytes(StandardCharsets.UTF_8));
+      this.udp_tx.send(this.info.getBytes(StandardCharsets.UTF_8));
   }
 }
