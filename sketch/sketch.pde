@@ -48,6 +48,7 @@ void draw () {
 
   stratum.draw(SHOW_PILLARS);
   stratum.drawFloor(SHOW_GRID, SHOW_GRID_LIGHT);
+  stratum.printNodesMapping();
   record();
   fpsMeter();
 }
